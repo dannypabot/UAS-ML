@@ -6,8 +6,11 @@ import numpy as np
 st.title('Aplikasi Prediksi Spesies Ikan Berbasis Streamlit')
 
 # Memuat semua model
-with open('svmfish.pkl', 'rb') as f:
-    model_SVM = pickle.load(f)
+try:
+    with open('svmfish.pkl', 'rb') as f:
+        model_SVM = pickle.load(f)
+except Exception as e:
+    st.error(f"Error loading model: {e}")
 
 # Dropdown untuk memilih model
 model_choice = st.selectbox(
